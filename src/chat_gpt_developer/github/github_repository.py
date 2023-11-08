@@ -6,7 +6,7 @@ from github.InputGitTreeElement import InputGitTreeElement
 import json
 
 
-def parse_json_to_files(json_str: str) -> List[File]:
+def parse_json_to_files(json_str: str) -> List['File']:
     return [
         File(**file) for file in json.loads(json_str)
     ]
@@ -31,7 +31,7 @@ class GitHubRepository:
         except GithubException:
             repo.create_git_ref(f'refs/{ref}', sha)
 
-    def submit_pull_request(self, files: List[File], title: str, body: str) -> None:
+    def submit_pull_request(self, files: List['File'], title: str, body: str) -> None:
         mainline_sha = self._get_latest_commit(self.repo, self.mainline_branch)
         self._create_or_get_branch(self.repo, self.development_branch, mainline_sha)
 
@@ -44,7 +44,7 @@ class GitHubRepository:
 
         self.repo.create_pull(title, body, self.development_branch, self.mainline_branch)
 
-    def get_repo_contents(self, path: str = '') -> List[File]:
+    def get_repo_contents(self, path: str = '') -> List['File']:
         contents = self.repo.get_contents(path)
         file_list = []
 
