@@ -8,6 +8,6 @@ setup(
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     extras_require={
-        "test": ["pytest", "pytest-cov"],
-    },
+        "test": ["pytest", "pytest-mock", "pytest-cov"],
+    }
 )
